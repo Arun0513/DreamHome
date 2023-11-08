@@ -5,18 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Profile Cards | CodingLab</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet/cart" href="cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
   </head>
   <body>
     <div class="body4">
     <div class="container4">
+      {{#each products }}
       <div class="box">
       <div class="image">
-        <img src="https://storage.googleapis.com/addition-beta-public/realtor-images-test/border-913257ef-d1dc-4274-8fff-1b2aeb41ef0c.png">
+        <img src="/images/product/{{this._id}}.jpg">
         </div>
-        <div class="name_job">ROSE VILLA</div>
-        <div class="name_job">80cr</div>
+        <div class="name_job">{{this.housetype}}</div>
+        <div class="name_job">{{this.price}}</div>
   
         <div class="rating">
           <i class="fas fa-star"></i>
@@ -25,15 +26,16 @@
           <i class="far fa-star"></i>
           <i class="far fa-star"></i>
         </div>
-           <div class="name_job">5BHK</div>
-          <div class="name_job">3500Sqft</div>
-        <p> Lorem ipsum dolor sitamet, stphen hawkin so adipisicing elit. Ratione disuja doloremque reiciendi nemo.</p>
+           <div class="name_job">{{this.rooms}}</div>
+          <div class="name_job">{{this.Sqft}}</div>
+        <p> {{this.classification}}</p>
         <div class="btns">
             
-          <a href="users/payment" class="button1"> BUY </a>
+          <a href="/users/payment/{{_id}}" class="button1"> BUY </a>
           <a href="/users/home" class="button1">Back</a>
         </div>
       </div>
+      {{/each}}
     </div>
     </div>
       </body>

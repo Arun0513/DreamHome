@@ -9,25 +9,25 @@
     <div class="products">
         <div class="containeradd">
             <h1 style="color: gold;">UPDATE !</h1>
-            <form action="">
+            <form action="/addproduct" method="post" enctype="multipart/form-data">
                 <div class="formadd">
-               <input type="text" placeholder="Housetype" required>
+               <input type="text" name="housetype" placeholder="Housetype" required>
                 {{!-- <label>Car Name</label> --}}
             </div>
             <div class="formadd">
-                <input type="text" placeholder="PRICES" required >
+                <input type="text" name="price" placeholder="PRICES" required >
                 {{!-- <label>Brand</label> --}}
             </div>
             <div class="formadd">
-                <input type="text" placeholder="NO OF BHK" required>
+                <input type="text" name="rooms" placeholder="NO OF BHK" required>
                 {{!-- <label>Brand</label> --}}
             </div>
             <div class="formadd">
-                <input type="text" placeholder="Sqft" >
+                <input type="text" name="sqft" placeholder="Sqft" >
                 {{!-- <label>Brand</label> --}}
             </div>
             <div class="formadd">
-                <input type="text" placeholder="Classification" >
+                <input type="text" name="classification" placeholder="Classification" >
                 {{!-- <label>Brand</label> --}}
             </div>
             <div class="formadd">
@@ -35,7 +35,7 @@
                  
             </div>
             <div>
-             <a href="" class="addbtn">ADD PRODUCT</a>
+             <input type="submit"  class="addbtn" value="Sumbit">
              </div>
             </form>
         </div>

@@ -6,7 +6,7 @@ var logger = require('morgan');
 var hbs = require('hbs');
 var session = require('express-session');
 var con = require('./config/config');
-// var fileupload = require('express-fileupload');
+var fileupload = require('express-fileupload');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // var adminRouter = require('./routes/admin');
@@ -28,7 +28,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge:600000}
 }));
-// app.use(fileupload());
+app.use(fileupload());
 async function connection()
 {
   try {

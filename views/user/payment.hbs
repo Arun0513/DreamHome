@@ -4,35 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-
-  <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/sidebar.css">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/bb515311f9.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet/payment" href="payment.css">
+  <title>Day 002 - Credit Card Checkout</title>
 </head>
 <body>
-</head>
-    <!-- Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/bb515311f9.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <title>Day 002 - Credit Card Checkout</title>
-  <body>
-    <div class="bodypay1">
+  <div class="bodypay1">
+      {{!-- {{#each product}} --}}
     <div class="checkout-container">
+    
       <div class="left-side">
         <div class="text-box">
-          <h1 class="home-heading">Modern Home</h1>
-          <p class="home-price"><em>249.50 USD </em>/ 1 night</p>
+          {{!-- <h1 class="home-heading">{{this.housetype}}</h1> --}}
+          {{!-- <p class="home-price"><em>{{this.price}} USD</em> / 1 night</p> --}}
           <hr class="left-hr" />
-          <p class="home-desc"><em>Entire home </em>for <em>2 guest</em></p>
+          <p class="home-desc"><em>Entire home</em> for <em>2 guests</em></p>
           <p class="home-desc">
-            <em>Tue, July 23, 2022 </em>to <em>Thu, July 25, 2022</em>
+            <em>Tue, July 23, 2023</em> to <em>Thu, July 25, 2022</em>
           </p>
         </div>
       </div>
-
+      
       <div class="right-side">
         <div class="receipt">
           <h2 class="receipt-heading">Receipt Summary</h2>
@@ -48,15 +41,15 @@
               </tr>
               <tr>
                 <td>Subtotal</td>
-                <td class="price">499.00 USD</td>
+                <td class="price">{{data.subTotal}}</td>
               </tr>
               <tr>
                 <td>Tax</td>
-                <td class="price">47.41 USD</td>
+                <td class="price">{{data.tax}}</td>
               </tr>
               <tr class="total">
                 <td>Total</td>
-                <td class="price">546.41 USD</td>
+                <td class="price">{{data.grantTotal}}</td>
               </tr>
             </table>
           </div>
@@ -64,69 +57,67 @@
 
         <div class="payment-info">
           <h3 class="payment-heading">Payment Information</h3>
-         <div class="main">
-    <h2> Check Out </h2><br>
-    <h5>Order Id : <span id="orderid">{{order.id}}</span></h5><br>
-    <h5>Amount : <span id="amount">{{order.amount}}</span>
-    <span id="amounts"></span></h5>
-    <button onclick="payNow()" class="rzp-button">Pay with Razorpay</button><br>
-    {{!-- <center><a href="/" class="btn btn-success" style="background-color:#24047a;">Explore New</a></center> --}}
-</div>
+          <div class="main">
+            <h2>Check Out</h2><br>
+             <h5>Order Id: <span id="orderid">{{order.id}}</span></h5><br> 
+             <h5>Amount: <span id="amount">{{order.amount}}</span></h5> 
+            <span id="amounts"></span>
+            <button onclick="payNow()" class="rzp-button">Pay with Razorpay</button><br>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{!-- {{/each}} --}}
+  </div>
 
-<script>
+  <script>
     let id = document.getElementById('orderid').innerHTML;
-    var  amount = document.getElementById('amount').innerHTML;
-    document.getElementById('amounts').innerHTML = amount/100;
+    let amount = document.getElementById('amount').innerHTML;
+    document.getElementById('amounts').innerHTML = amount / 100;
     var options = {
-    "key": "rzp_test_9lippGn0j5aik2", // Enter the Key ID generated from the Dashboard
-    "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    "currency": "INR",
-    "name": "Acme Corp",
-    "description": "Test Transaction",
-    "image": "https://example.com/your_logo",
-    "order_id": id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    "handler": function (response){
+      "key": "rzp_test_9lippGn0j5aik2",
+      "amount": amount,
+      "currency": "USD", // Change currency to USD if needed
+      "name": "Acme Corp",
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "order_id": id,
+      "handler": function (response) {
         pay(response);
-    },
-    "prefill": {
+      },
+      "prefill": {
         "name": "Gaurav Kumar",
         "email": "gaurav.kumar@example.com",
         "contact": "9000090000"
-    },
-    "notes": {
+      },
+      "notes": {
         "address": "Razorpay Corporate Office"
-    },
-    "theme": {
+      },
+      "theme": {
         "color": "#3399cc"
-    }
-};
-var rzp1 = new Razorpay(options);
-rzp1.on('payment.failed', function (response){
-        alert(response.error.code);
-        alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
-});
-function payNow(){
-    console.log("clicked")
-    rzp1.open();
-    e.preventDefault();
-}
-    function pay(response) {
-        $.post('/verify',
-        data = {
-            response
-        },function(data,status){
-            console.log(data)
-            window.location.href="/"
-        }
-        )
-}
-</script>
-</body>
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response) {
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+    });
 
+    function payNow() {
+      rzp1.open();
+    }
+
+    function pay(response) {
+      // Make an AJAX request to your server to verify the payment
+      // For example, you can use the Fetch API or jQuery AJAX
+      // and redirect the user to a success page upon successful payment
+      // and handle errors accordingly.
+    }
+  </script>
 </body>
 </html>

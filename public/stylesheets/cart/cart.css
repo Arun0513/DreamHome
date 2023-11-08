@@ -4,6 +4,7 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  text-decoration: solid;
 }  
   ::selection{
   background: #8e44ad;
@@ -55,6 +56,7 @@ color: #17c0eb
   background: #8e44ad;
   padding: 3px;
   border-radius: 50%;
+  color: black;
 }
 .box .image img{
   height: 100%;
