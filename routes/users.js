@@ -87,7 +87,7 @@ router.post('/register',async (req,res)=>{
   try{
     let data = await userModels.create(req.body)
     console.log("data inserted")
-    res.redirect('/users/login');
+    res.redirect('/login');
   }catch(error){
     console.log(error) 
   }
@@ -109,7 +109,7 @@ router.post('/login', async (req, res, next) => {
         res.redirect('/')
       }else{
         req.session.nouser = "Username or password incorrect";
-        res.redirect('/users/login')
+        res.redirect('/login')
       }
   } catch (error) {
     console.log(error)
