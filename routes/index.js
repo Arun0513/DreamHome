@@ -20,9 +20,9 @@ router.post('/adminlogin',(req,res)=>{
   let email ="admin";
   let password = "admin";
   if(req.body.email ==email && req.body.password==password){
-          res.redirect('/adminhome')
+          res.redirect('admin/adminhome')
   }else{
-          res.redirect('/adminlogin')
+          res.redirect('admin/adminlogin')
   }
 })
 router.post('/addproduct', async (req,res) => {
@@ -49,7 +49,7 @@ router.post('/addproduct', async (req,res) => {
         // You might want to send an error response to the client.
       } else {
         console.log("Data inserted");
-        res.redirect('/adminhome');
+        res.redirect('admin/adminhome');
       }
     });
   } catch (error) {

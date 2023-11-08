@@ -16,10 +16,10 @@ router.use(session({
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-router.get('/home', (req, res,) =>{
+// router.get('/', function(req, res, next) {
+//   res.send('respond with a resource');
+// });
+router.get('/', (req, res,) =>{
   
   if(req.session.employee)
   {
@@ -106,7 +106,7 @@ router.post('/login', async (req, res, next) => {
       if(employee.length >0){
           req.session.employee = employee[0];
          // console.log( req.session.employee ,"session emp")
-        res.redirect('/users/home')
+        res.redirect('/')
       }else{
         req.session.nouser = "Username or password incorrect";
         res.redirect('/users/login')
